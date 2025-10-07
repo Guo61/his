@@ -1,0 +1,18 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+
+local LaunchRemote = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("LaunchEvents"):WaitForChild("Launch")
+local ReturnRemote = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("LaunchEvents"):WaitForChild("Return")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+LaunchRemote:FireServer()
+
+task.wait(1)
+
+character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(10000, 1, 1)
+
+task.wait(1)
+
+ReturnRemote:FireServer()
